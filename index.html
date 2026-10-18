@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio Oficial - Desapega Manaus</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #008f5d;
+            --primary-dark: #006b44;
+            --secondary: #0056b3;
+            --secondary-dark: #003d82;
+            --bg-color: #f4f7f6;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #ffffff;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            color: var(--secondary-dark);
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #fff;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebd5b;
+        }
+
+        .success-box {
+            background-color: #e1f5fe;
+            border: 1px solid #b3e5fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+        }
+
+        .success-box p {
+            color: #0277bd;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header>
+            <h1>Sorteio Oficial - Desapega Manaus</h1>
+            <p>Garanta suas cotas para participar dos sorteios do grupo com total agilidade!</p>
+        </header>
+
+        <!-- Formulário de Inscrição -->
+        <div class="card">
+            <h2>Garantir Minhas Cotas</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName">Nome Completo</label>
+                    <input type="text" id="fullName" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="cotasQty">Quantidade de Cotas / Números</label>
+                    <select id="cotasQty">
+                        <option value="1">1 cota</option>
+                        <option value="2">2 cotas</option>
+                        <option value="3">3 cotas</option>
+                        <option value="5">5 cotas</option>
+                        <option value="10">10 cotas</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Gerar Meus Números da Sorte</button>
+            </form>
+
+            <!-- Caixa de Sucesso com Botão do WhatsApp -->
+            <div id="successBox" class="success-box">
+                <p id="successText"></p>
+                <a id="whatsappBtn" href="#" target="_blank" class="btn btn-whatsapp">📲 Enviar Pedido para o WhatsApp</a>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Desapega Manaus - Todos os direitos reservados.
+        </footer>
+    </div>
+
+    <script>
+        // Número do WhatsApp configurado: (92) 99420-5721
+        const SEU_NUMERO_WHATSAPP = "5592994205721"; 
+
+        const form = document.getElementById('registrationForm');
+        const fullNameInput = document.getElementById('fullName');
+        const cotasQtyInput = document.getElementById('cotasQty');
+        const successBox = document.getElementById('successBox');
+        const successText = document.getElementById('successText');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+
+        // Gerar números aleatórios de 4 dígitos
+        function generateLuckyNumbers(count) {
+            let numbers = [];
+            while (numbers.length < count) {
+                let num = Math.floor(1000 + Math.random() * 9000);
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers;
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = fullNameInput.value.trim();
+            const qty = parseInt(cotasQtyInput.value);
+
+            if (!name) {
+                alert('Por favor, preencha o seu nome completo.');
+                return;
+            }
+
+            // Gera os números da sorte
+            const luckyNumbers = generateLuckyNumbers(qty);
+            const numerosStr = luckyNumbers.join(', ');
+
+            // Mensagem pronta que vai direto para o seu WhatsApp
+            const textoMensagem = `Olá! Acabei de gerar minhas cotas pelo site do Sorteio Desapega Manaus.%0A%0A*Nome:* ${name}%0A*Cotas escolhidas:* ${qty}%0A*Meus Números da Sorte:* ${numerosStr}`;
+
+            // Monta o link do WhatsApp
+            const urlWhatsApp = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${textoMensagem}`;
+
+            // Atualiza os elementos na tela
+            successText.innerHTML = `Pronto, <strong>${name}</strong>! Seus números gerados foram: <br><strong style="color:var(--secondary-dark); font-size:1.1rem;">[ ${numerosStr} ]</strong><br><small>Clique no botão abaixo para enviar o pedido direto para o meu WhatsApp.</small>`;
+            
+            whatsappBtn.href = urlWhatsApp;
+            successBox.style.display = 'block';
+
+            // Rola suavemente até a mensagem de sucesso
+            successBox.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
